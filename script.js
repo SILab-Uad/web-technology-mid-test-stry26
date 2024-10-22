@@ -1,6 +1,6 @@
 // TODO: Implement the password generation logic based on user input
 
-const generatePassword = (length, options) => {
+export const generatePassword = (length, options) => {
     // Character sets for password generation
     const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const lowercase = "abcdefghijklmnopqrstuvwxyz";
@@ -15,9 +15,13 @@ const generatePassword = (length, options) => {
     if (options.includeNumbers) charpw += numbers;
     if (options.includeSpecialChars) charpw += specialChars;
 
+    // if (charpw === "") {
+    //     alert("Minimal pilih 1 opsi dek!");
+    //     return "";
+    // }
+
     if (charpw === "") {
-        alert("Minimal pilih 1 opsi dek!");
-        return "";
+        throw new Error("At least one character type must be selected.");
     }
 
     // Generate the password based on the selected criteria
@@ -30,23 +34,25 @@ const generatePassword = (length, options) => {
 };
 
 // TODO: Add event listener to the button to call generatePassword and display the output
-document.getElementById("generateBtn").addEventListener("click", () => {
-    const length = document.getElementById("length").value;
-    const options = {
-        includeUppercase: document.getElementById("includeUppercase").checked,
-        includeLowercase: document.getElementById("includeLowercase").checked,
-        includeNumbers: document.getElementById("includeNumbers").checked,
-        includeSpecialChars: document.getElementById("includeSpecialChars").checked,
-    };
+// npm
 
-    const pw = generatePassword(length, options);
-    document.getElementById("passwordOutput").value = pw;
-});
+// document.getElementById("generateBtn").addEventListener("click", () => {
+//     const length = document.getElementById("length").value;
+//     const options = {
+//         includeUppercase: document.getElementById("includeUppercase").checked,
+//         includeLowercase: document.getElementById("includeLowercase").checked,
+//         includeNumbers: document.getElementById("includeNumbers").checked,
+//         includeSpecialChars: document.getElementById("includeSpecialChars").checked,
+//     };
+
+//     const pw = generatePassword(length, options);
+//     document.getElementById("passwordOutput").value = pw;
+// });
 
 // BONUS: Implement the copy to clipboard functionality
-document.getElementById("copyBtn").addEventListener("click", () => {
-    const pw = document.getElementById("passwordOutput");
-    pw.select();
-    document.execCommand("copy");
-    alert("Password copied to clipboard!");
-});
+// document.getElementById("copyBtn").addEventListener("click", () => {
+//     const pw = document.getElementById("passwordOutput");
+//     pw.select();
+//     document.execCommand("copy");
+//     alert("Password copied to clipboard!");
+// });
