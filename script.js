@@ -8,25 +8,25 @@ const generatePassword = (length, options) => {
     const specialChars = "!@#$%^&*()";
 
     // Create a variable for the character set based on selected options
-    let charSet = "";
+    let charpw = "";
 
-    if (options.includeUppercase) charSet += uppercase;
-    if (options.includeLowercase) charSet += lowercase;
-    if (options.includeNumbers) charSet += numbers;
-    if (options.includeSpecialChars) charSet += specialChars;
+    if (options.includeUppercase) charpw += uppercase;
+    if (options.includeLowercase) charpw += lowercase;
+    if (options.includeNumbers) charpw += numbers;
+    if (options.includeSpecialChars) charpw += specialChars;
 
-    if (charSet === "") {
-        alert("Minimal pilih 1 opsi!");
+    if (charpw === "") {
+        alert("Minimal pilih 1 opsi dek!");
         return "";
     }
 
     // Generate the password based on the selected criteria
-    let password = "";
+    let pw = "";
     for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * charSet.length);
-        password += charSet[randomIndex];
+        const randomIndex = Math.floor(Math.random() * charpw.length);
+        pw += charpw[randomIndex];
     }
-    return password;
+    return pw;
 };
 
 // TODO: Add event listener to the button to call generatePassword and display the output
@@ -39,14 +39,14 @@ document.getElementById("generateBtn").addEventListener("click", () => {
         includeSpecialChars: document.getElementById("includeSpecialChars").checked,
     };
 
-    const password = generatePassword(length, options);
-    document.getElementById("passwordOutput").value = password;
+    const pw = generatePassword(length, options);
+    document.getElementById("passwordOutput").value = pw;
 });
 
 // BONUS: Implement the copy to clipboard functionality
 document.getElementById("copyBtn").addEventListener("click", () => {
-    const password = document.getElementById("passwordOutput");
-    password.select();
+    const pw = document.getElementById("passwordOutput");
+    pw.select();
     document.execCommand("copy");
     alert("Password copied to clipboard!");
 });
